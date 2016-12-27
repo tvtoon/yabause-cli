@@ -1,0 +1,58 @@
+.TH YABAUSE 1 2016\-12\-27 0.9.15+
+
+.SH SYNOPSIS
+
+.SY yabause
+.OP \-a address
+.OP \-e executable
+.OP \-f (frameskip)
+.OP \-h
+.OP \-i ISO_file
+.OP \-m (mutesound)
+.OP \-\-
+.YS
+
+.SH DESCRIPTION
+
+.PP
+Saturn emulator, running trough command line, using SDL.
+.PP
+The "-e" option loads an executable: binary, ELF or COFF.
+Content of the file will be loaded to 0x06004000 and execution will start from
+that address, unless specified by the "-a" option.
+.PP
+The "-i" option loads either a ISO9660 image,
+a raw (2352) CD binary image file, or a properly set table of contents:
+CloneCD (CCD), Alcohool (MDS), or cuesheet (CUE).
+.PP
+Setting one of these excludes the other option.
+If neither are set, the emulator loads the BIOS, if it is set in the
+configuration file. HLE BIOS can only be run with games.
+.PP
+The "-f" option turns on the automatic frameskip.
+.PP
+The "-m" option sets the dummy sound core.
+
+.SH SEE ALSO
+
+mupen64(1), pcsaxo(1)
+
+.SH COPYRIGHT
+
+YABAUSE project is available under GPL License, see COPYING for details.
+
+.SH AVAILABILITY
+
+The latest release is available on the repositories at:
+.B <https://www.github.com/yabause/yabause/>
+.
+
+.SH AUTHORS
+
+This command-line version is a work of...
+
+.SS TVTOON
+
+If you have some development work or suggestion, send me a mail
+trough Gmail:
+.B tvtoon@gmail.com .

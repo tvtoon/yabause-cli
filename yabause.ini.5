@@ -1,0 +1,175 @@
+.TH YABAUSE\ Configuration\ File 5 2016\-12\-27 0.9.15+
+
+.SH DESCRIPTION
+
+.PP
+Default configuration file for YABAUSE emulator, simple text file.
+The options have the same name as the yabauseinit_struct found in "yabause.h".
+.PP
+These are strings: biospath, cdpath, ssfpath, buppath, mpegpath, cartpath,
+modemip, modemport, and sh1rompath.
+Values should come after "=".
+.PP
+Everything else should be considered integers, 0 means off or automatic.
+
+.PP
+.B biospath:
+.
+path to the BIOS file.
+.PP
+.B cdpath:
+.
+path to the CD drive or CD image file.
+.PP
+.B ssfpath:
+.
+path to the SSF file.
+.PP
+.B buppath:
+.
+path to the system backup RAM file.
+.PP
+.B mpegpath:
+.
+path to the MPEG card image file.
+.PP
+.B cartpath:
+.
+path to the external cartridge backup RAM.
+.PP
+.B modemip:
+.
+Internet Protocol (v4) address for the modem.
+.PP
+.B modemport:
+.
+network port used by the modem.
+.PP
+.B sh1rompath:
+.
+path to the SH1 ROM image, for the low level cd block emulation.
+.PP
+.B percoretype:
+.
+index of the peripheral core.
+.PP
+.B sh1coretype:
+.
+index of the SH1 core.
+.PP
+.B sh2coretype:
+.
+index of the SH2 core.
+.PP
+.B vidcoretype:
+.
+index of the video core.
+.PP
+.B sndcoretype:
+.
+index of the sound core.
+.PP
+.B m68kcoretype:
+.
+index of the Motorola 68K core.
+.PP
+.B cdcoretype:
+.
+index of the CD core.
+.PP
+.B carttype:
+.
+type of the expansion cartridge used.
+.PP
+.B regionid:
+.
+set for system region.
+.PP
+.B videoformattype:
+.
+type of the video format (0 for NTSC, 1 for PAL).
+.PP
+.B frameskip:
+.
+set for automatic frameskip.
+.PP
+.B clocksync:
+.
+set for clock syncing by emulation, instead of using the system RTC.
+.PP
+.B basetime:
+.
+set for default system time (factory setting).
+.PP
+.B usethreads:
+.
+set for using threads, for the video core.
+.PP
+.B numthreads:
+.
+number of threads to use.
+.PP
+.B osdcoretype:
+.
+index of the on-screen display core.
+.PP
+.B skip_load:
+.
+set for skip the BIOS load routine.
+.PP
+.B play_ssf:
+.
+set for only play SSF.
+.PP
+.B use_new_scsp:
+.
+set for using the newer second SCSP core.
+It must have been built in the emulator.
+.PP
+.B use_cd_block_lle:
+.
+set for low level CD block emulation.
+.PP
+.B use_sh2_dma_timing:
+.
+set for the SH2 DMA timing, for the LLE CD block emulation.
+.PP
+.B use_scu_dma_timing:
+.
+set for the SCU DMA timing, for the LLE CD block emulation.
+.PP
+.B sh2_cache_enabled:
+.
+set for the SH2 cache, for the LLE CD block emulation.
+.PP
+.B use_scsp_dsp_dynarec:
+.
+set for the SCSP digital signal processor dynamic recompiler.
+.PP
+.B use_scu_dsp_jit:
+.
+set for the SCU digital signal processor recompiler.
+
+.SH SEE ALSO
+
+yabause(1)
+
+.SH COPYRIGHT
+
+YABAUSE project is available under GPL License, see COPYING for details.
+
+.SH AVAILABILITY
+
+The latest release is available on the repositories at:
+.B <https://www.github.com/yabause/yabause/>
+.
+
+.SH AUTHORS
+
+This command-line version is a work of...
+
+.SS TVTOON
+
+If you have some development work or suggestion, send me a mail
+trough Gmail:
+.B tvtoon@gmail.com .
