@@ -1,2 +1,3 @@
 # yabause-cli
 YABAUSE CLI stuff, avoid the GLib...
+By the way, you need to work your way with CMake as I don't use it. :)
