@@ -278,7 +278,9 @@ OSD_struct *OSDCoreList[3] =
 void YuiSwapBuffers(void)
 {
  int bufh = 0, bufw = 0, i = 0, j = 0;
+ unsigned char *p = 0;
 
+ p = (unsigned char *)rgbs->pixels;
  i = SDL_LockSurface( rgbs );
 
  if ( i != 0 )
@@ -296,7 +298,7 @@ void YuiSwapBuffers(void)
 
   for ( i = 0, j = 0; i < ( bufw * bufh * 4 ); i += bufw * 4, j += ( 704 - bufw ) * 4 )
 {
-   memcpy( &rgbs->pixels[i + j], &dispbuffer[i], bufw * 4 );
+   memcpy( &p[i + j], &dispbuffer[i], bufw * 4 );
 }
 
   SDL_UnlockSurface( rgbs );
@@ -407,21 +409,25 @@ int main( int argc, char **argv )
 {
   fprintf( stderr, "Config file not found, using default.\n" );
 }
+ else
+{
+  t = cfg_loadf( cfgf, &Config );
+  fclose(cfgf);
+#ifdef __DEBUG__
+  printf( "Bytes read: %ld.\n", t );
+  printcfg( &Config );
+#endif
+  i = cfg_checks( Config );
+
+  if ( i != 0 )
+{
+   fprintf( stderr, "Config file errors count: %d.\n", i );
+   return(1);
+}
+
+}
 
  printf( "Config path: \"%s\".\n", cfgn );
- t = cfg_loadf( cfgf, &Config );
- fclose(cfgf);
-#ifdef __DEBUG__
- printf( "Bytes read: %ld.\n", t );
- printcfg( &Config );
-#endif
- i = cfg_checks( Config );
-
- if ( i != 0 )
-{
-  fprintf( stderr, "Config file errors count: %d.\n", i );
-  return(1);
-}
 
  do
 {
@@ -451,6 +457,8 @@ int main( int argc, char **argv )
      fprintf( stderr, "Executable path is too big.\n" );
      return(2);
 }
+
+    Config.cdcoretype = CDCORE_DUMMY;
     break;
 
    case 'f':
@@ -471,6 +479,7 @@ int main( int argc, char **argv )
      fprintf( stderr, "ISO path is too big.\n" );
      return(2);
 }
+
     Config.cdcoretype = CDCORE_ISO;
     break;
 
@@ -520,6 +529,7 @@ int main( int argc, char **argv )
   return(3);
 }
 
+ YabauseReset();
 /*
  Should be checked by the options, but CS2ChangeCore doesn't set it properly...
 */
@@ -530,15 +540,15 @@ int main( int argc, char **argv )
   sprintf( staten, "%s/%s.%1d", pchar, cdip->itemnum, statec );
   staten[h + 13] = '\0';
   printf( "Setting default state filename.\n%s\n", staten );
+  printf( "Loading ISO or CDROM...\n" );
+}
+ else
+{
 
   if ( exef != '\0' )
 {
    printf( "Loading executable...\n" );
    MappedMemoryLoadExec( exef, exeaddr );
-}
-  else
-{
-   printf( "Loading ISO or CDROM...\n" );
 }
 
 }
